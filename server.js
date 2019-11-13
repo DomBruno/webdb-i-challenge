@@ -3,13 +3,13 @@ const express = require('express');
 const helmet = require('helmet');
 
 // Import Data Source
-const db = require('./data/dbConfig.js');
+const db = require('./data/dbConfig');
 
 // Create Server Object
 const server = express();
 
 // Import Router
-const acccountsRouter = require('./routers/accountsRouter');
+const accountsRouter = require('./routers/accountsRouter');
 
 
 // Register Global Middleware

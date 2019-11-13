@@ -1,10 +1,10 @@
 // Import Express, Router, and Data
-// Import Mogidules
+// Import Modules
 const express = require('express');
 const router = express.Router();
 
 // Import Data Source
-const db = require('../data/dbConfig');
+const db = require('../data/dbConfig.js');
 
 // Get All Accounts
 router.get('/', (req, res) => {
@@ -46,7 +46,7 @@ router.get('/:id', (req, res) => {
         });
     });
 
-    // Get all accounts sorted by Budget
+    /* Get all accounts sorted by Budget
     router.get('/asc', (req, res) => {
         db('accounts').orderBy('budget', 'desc')
         .then(accounts => {
@@ -76,6 +76,7 @@ router.get('/:id', (req, res) => {
             });
         });
     });
+    */
     
     // Create Account
 
