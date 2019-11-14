@@ -80,41 +80,22 @@ router.get('/:id', (req, res) => {
     
     // Create Account
 
-    router.post('/', (req, res) => {
-        const { name, budget } = req.body;
-        
-        db('accounts').insert({name},{budget})
-        .then(account => {
-        if (name.length && budget.length > 0) {
-        res
-        .status(201)
-        .json({
-            message: 'Account successfully added.',
-        })
-        } else {
-            res
-            .status(400)
-            .json({
-                message: 'Please supply both a Name and Budget entry for Account file creation',
-            })
-        .catch (err => {
-            res
-            .status(500)
-            .json({
-                message: 'Failed to CREATE account.',
-            });
-        }); 
-    } });
-});  
-
+    router.post ('/', (req,res) =>{
+        db('accounts')
+          .insert(req.body)
+          .then(id => {
+            res.status(201).json(id)
+          })
+        });
     // Update Account
 
     router.put('/:id', (req, res) => {
-        const updateInfo = req.body;
+        const {name, budget} = req.body;
         const { id } = req.params;
 
-        db('accounts').where({id})
-        .update({updateInfo})
+        db('accounts')
+        .where({id})
+        .update(req.body)
         .then(update => {
         if (!id) {
             res
@@ -132,7 +113,7 @@ router.get('/:id', (req, res) => {
             res
             .status(500)
             .json({
-                message: 'Failed to UPDATE account.',
+                message: 'Failed to UPDATE account.', err,
             });
         
         });
@@ -162,7 +143,7 @@ router.get('/:id', (req, res) => {
                 res
                 .status(500)
                 .json({
-                    message: 'Failed to DELETE account.'
+                    message: 'Failed to DELETE account.', err
                 });
             });
         }
