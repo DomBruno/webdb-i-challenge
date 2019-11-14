@@ -1,3 +1,4 @@
+  
 -- Database Queries
 
 -- Find all customers with postal code 1010
